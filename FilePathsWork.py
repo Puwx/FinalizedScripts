@@ -22,7 +22,7 @@ ws.write(2,16,"Green, un-bolded text denotes a file",filestyle)
 rowcount = 1
 total = 0
 for root, dirs, files in os.walk(path):
-    path = root.count("\\")-1
+    path = root.count("\\")
     ws.write(rowcount,path,os.path.basename(root),foldstyle)
     rowcount+=1
     total+=1
