@@ -1,4 +1,6 @@
 import random
+import sys
+
 
 suits = ["Hearts","Diamonds","Clubs","Spades"]
 
@@ -50,7 +52,7 @@ values = card_values()
 built_deck = build_deck(values)
 
 def red_or_black():
-    r_o_b_q = input("Red or black?")
+    r_o_b_q = str(input("Red or black?"))
     if r_o_b_q.lower() == "red" or r_o_b_q.lower() == "black":
         r_o_b = pick_card(built_deck)
         if r_o_b_q.lower() == r_o_b.colour.lower():
@@ -63,7 +65,7 @@ def red_or_black():
         print("Please provide a valid input, either Red or Black.")
 
 def high_or_low(r_b_card):
-    h_o_l_q = input("High or low?").lower()
+    h_o_l_q = str(input("High or low?")).lower()
     if h_o_l_q == "high" or h_o_l_q == "low":
         h_o_l = pick_card(built_deck)
         hl = None
@@ -85,7 +87,7 @@ def high_or_low(r_b_card):
         print("That is not a valid answer, please input either high or low.")
 
 def in_or_out(r_b_card,h_l_card):
-    i_o_o_q = input("In between(In) outside(Out)?").lower()
+    i_o_o_q = str(input("In between(In) outside(Out)?")).lower()
     if i_o_o_q == "in" or i_o_o_q == "out":
 
         i_o_o = pick_card(built_deck)
@@ -110,7 +112,7 @@ def in_or_out(r_b_card,h_l_card):
         print("Invalid answer, please specify either in or out.")
 
 def suit_guess():
-    s_g_q = input("What suit do you think the next card will be ?(Clubs,Spades, Diamonds, or Hearts)  ").lower()
+    s_g_q = str(input("What suit do you think the next card will be ?(Clubs,Spades, Diamonds, or Hearts)  ")).lower()
     if s_g_q in ("hearts","diamonds","spades","clubs"):
         s_g = pick_card(built_deck)
         if s_g_q == s_g.suit:
