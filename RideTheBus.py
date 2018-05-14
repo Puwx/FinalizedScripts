@@ -138,25 +138,3 @@ if len(built_deck) > 0:
             
 else:
     print("You are out of cards! You aren't very good at this.")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
