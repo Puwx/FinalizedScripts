@@ -1,3 +1,4 @@
+
 import random
 import sys
 
@@ -52,77 +53,84 @@ values = card_values()
 built_deck = build_deck(values)
 
 def red_or_black():
-    r_o_b_q =raw_input("Red or black?")
-    if r_o_b_q.lower() == "red" or r_o_b_q.lower() == "black":
-        r_o_b = pick_card(built_deck)
-        if r_o_b_q.lower() == r_o_b.colour.lower():
-            print("Right answer! The card was the {}.".format(r_o_b))
-            return r_o_b
+    while True:
+        r_o_b_q = str(input("Red or black?"))
+        if r_o_b_q.lower() == "red" or r_o_b_q.lower() == "black":
+            r_o_b = pick_card(built_deck)
+            if r_o_b_q.lower() == r_o_b.colour.lower():
+                print("Right answer! The card was the {}.".format(r_o_b))
+                return r_o_b
+            else:
+                print("Wrong answer! The card was the {}.".format(r_o_b))
+            break
         else:
-            print("Wrong answer! The card was the {}.".format(r_o_b))
-
-    else:
-        print("Please provide a valid input, either Red or Black.")
+            print("Please provide a valid input, either Red or Black.")
 
 def high_or_low(r_b_card):
-    h_o_l_q = raw_input("High or low?").lower()
-    if h_o_l_q == "high" or h_o_l_q == "low":
-        h_o_l = pick_card(built_deck)
-        hl = None
-        if h_o_l.value < r_b_card.value:
-            hl = "Low"
-        elif h_o_l.value > r_b_card.value:
-            hl = "High"
+    while True:
+        h_o_l_q = str(input("High or low?")).lower()
+        if h_o_l_q == "high" or h_o_l_q == "low":
+            h_o_l = pick_card(built_deck)
+            hl = None
+            if h_o_l.value < r_b_card.value:
+                hl = "Low"
+            elif h_o_l.value > r_b_card.value:
+                hl = "High"
+            else:
+                hl = "Equal"
+            print(hl)
+            if h_o_l_q.lower() == hl.lower():
+                print ("That's the right anwswer! The card that was drawn was {}.".format(h_o_l))
+                return h_o_l
+            elif h_o_l_q.lower() != hl.lower():
+                print("That's the wrong- anwswer! The card that was drawn was {}.".format(h_o_l))
+            elif hl == "Equal":
+                print ("Those cards have equal value! The card that was drawn was {}.".format(h_o_l))
+            break        
         else:
-            hl = "Equal"
-        print(hl)
-        if h_o_l_q.lower() == hl.lower():
-            print ("That's the right anwswer! The card that was drawn was {}.".format(h_o_l))
-            return h_o_l
-        elif h_o_l_q.lower() != hl.lower():
-            print("That's the wrong- anwswer! The card that was drawn was {}.".format(h_o_l))
-        elif hl == "Equal":
-            print ("Those cards have equal value! The card that was drawn was {}.".format(h_o_l))
-    else:
-        print("That is not a valid answer, please input either high or low.")
+            print("That is not a valid answer, please input either high or low.")
+            
 
 def in_or_out(r_b_card,h_l_card):
-    i_o_o_q = raw_input("In between(In) outside(Out)?").lower()
-    if i_o_o_q == "in" or i_o_o_q == "out":
+    while True:
+        i_o_o_q = str(input("In between(In) outside(Out)?")).lower()
+        if i_o_o_q == "in" or i_o_o_q == "out":
 
-        i_o_o = pick_card(built_deck)
-        high_card = max(r_b_card.value,h_l_card.value)
-        low_card = min(r_b_card.value,h_l_card.value)
-        print("Max card: {} Min card: {}".format(high_card,low_card))
+            i_o_o = pick_card(built_deck)
+            high_card = max(r_b_card.value,h_l_card.value)
+            low_card = min(r_b_card.value,h_l_card.value)
+            print("Max card: {} Min card: {}".format(high_card,low_card))
 
-        if (i_o_o.value < high_card and i_o_o.value > low_card) and (i_o_o_q == "in"):
-            print("Thats the right answer! The card that was drawn was {}.".format(i_o_o))
-            return i_o_o 
+            if (i_o_o.value < high_card and i_o_o.value > low_card) and (i_o_o_q == "in"):
+                print("Thats the right answer! The card that was drawn was {}.".format(i_o_o))
+                return i_o_o 
 
-        elif (i_o_o.value < low_card and i_o_o.value > high_card)and (i_o_o_q == "out"):
-            print("Thats the right answer! The card that was drawn was {}.".format(i_o_o))
-            return i_o_o
+            elif (i_o_o.value < low_card or i_o_o.value > high_card) and (i_o_o_q == "out"):
+                print("Thats the right answer! The card that was drawn was {}.".format(i_o_o))
+                return i_o_o
 
-        elif (i_o_o.value == high_card) or (i_o_o.value == low_card):
-            print("The card that was drawn ({}), has an equal value to a previous card.".format(i_o_o))
-
+            elif (i_o_o.value == high_card) or (i_o_o.value == low_card):
+                print("The card that was drawn ({}), has an equal value to a previous card.".format(i_o_o))
+            else:
+                print("Wrong answer! The card that was drawn ({}) was not the same as you specified.".format(i_o_o))
+            break
         else:
-            print("Wrong answer! The card that was drawn ({}) was not the same as you specified.".format(i_o_o))
-    else:
-        print("Invalid answer, please specify either in or out.")
+            print("Invalid answer, please specify either in or out.")
 
 def suit_guess():
-    s_g_q = raw_input("What suit do you think the next card will be ?(Clubs,Spades, Diamonds, or Hearts)  ").lower()
-    if s_g_q in ("hearts","diamonds","spades","clubs"):
-        s_g = pick_card(built_deck)
-        if s_g_q == s_g.suit:
-            print("That's the right answer! The card that was drawn was {}.".format(s_g)) 
-            print("Congratulations you've won the game!")
-            return s_g
+    while True:
+        s_g_q = str(input("What suit do you think the next card will be ?(Clubs,Spades, Diamonds, or Hearts)  ")).lower()
+        if s_g_q in ("hearts","diamonds","spades","clubs"):
+            s_g = pick_card(built_deck)
+            if s_g_q == s_g.suit:
+                print("That's the right answer! The card that was drawn was {}.".format(s_g)) 
+                print("Congratulations you've won the game!")
+                return s_g
+            else:
+                print ("The suit that you guessed does not match the card that was drawn ({}).".format(s_g))
+            break
         else:
-            print ("The suit that you guessed does not match the card that was drawn ({}).".format(s_g))
-    else:
-        print ("Please provide a valid answer, a suit of card must be specified.")
+            print ("Please provide a valid answer, a suit of card must be specified.")
 
 
 
