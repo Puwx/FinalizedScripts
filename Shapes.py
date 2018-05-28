@@ -5,8 +5,6 @@ pi = math.pi
 
 class ThreeD:
 
-    dimensionality = "3-Dimensional"
-
     class Cube:
 
         "This Class has the following parameters/attributes: Area and Units (optional and defaults to meters.) "    
